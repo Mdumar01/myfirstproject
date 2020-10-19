@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title> create account</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/create.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+   </head>
+    <body>
+     <div class="centerdiv"> 
+      <div class="heading">
+      <h> sign in </h>
+      <p>already have an account? <a href="index.html"> sign in</a></p>
+      </div>
+      <div class="account">
+          <h>create a new API management account</h>
+        </div>
+        <form>
+        <div>
+            <input type="text" id="email" class="inputbox" placeholder="Email address">
+        </div>
+        <div>
+            <input type="password" id="password" class="inputbox" placeholder="Password">
+        </div>
+        <div>
+            <input type="password" id="confirmpassword" class="inputbox" placeholder="Confirm Password">
+        </div>
+        <p id="message"></p>
+        <div>
+            <button type="button" onclick="getInfo()"> sign up </button>
+          </div>
+        </form>
+        </div>
+
+        <script>
+            function check(){
+                var pwd = document.getElementById("password").value;
+                var pwd2 = document.getElementById("confirmpassword").value;
+                if(pwd == pwd2){
+                    document.getElementById("message").innerHTML =  "Password Matched"
+                } else {
+                    document.getElementById("message").innerHTML =  "Password Not Matched"
+                }
+            }
+
+            function getInfo() {
+                const url = "http://api.football-data.org/v2/matches";
+                fetch(url, {
+                method: "GET",
+                headers: {
+                "X-Auth-Token":"3349e304b3a378a4fff708bfd46869ca"
+                }
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error));
+            };
+        </script>
+     </body>
+    </html>
